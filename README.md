@@ -1,47 +1,98 @@
-## Yowsup opened Whatsapp service under platforms!
+# Yowsup 2 [![Build Status](https://travis-ci.org/tgalal/yowsup.svg?branch=master)](https://travis-ci.org/tgalal/yowsup) [![Join the chat at https://gitter.im/tgalal/yowsup](https://badges.gitter.im/tgalal/yowsup.svg)](https://gitter.im/tgalal/yowsup?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-## About Whatsapp
-According to [Whatsapp.com](http:/www.whatsapp.com):
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Z9KKEUVYEY6BN" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" /></a>
 
-WhatsApp Messenger is a cross-platform mobile messaging app which allows you to exchange messages without having to pay for SMS. WhatsApp Messenger is available for iPhone, BlackBerry, Android, Windows Phone and Nokia and yes, those phones can all message each other! Because WhatsApp Messenger uses the same internet data plan that you use for email and web browsing, there is no cost to message and stay in touch with your friends.
+## Updates (April 1, 2016)
+Yowsup v2.4.102 is out, See [release notes](https://github.com/tgalal/yowsup/releases/tag/v2.4.102)
 
-In addition to basic messaging WhatsApp users can create groups, send each other unlimited images, video and audio media messages.
+==========================================================
 
-## About Yowsup
-Yowsup is a python library that allows you to do all the previous in your own app. Yowsup allows you to login and use the Whatsapp service and provides you with all capabilities of an official Whatsapp client, allowing you to create a full-fledged custom Whatsapp client.
+## Yowsup opened WhatsApp service under platforms!
 
-A solid example of Yowsup's usage is [Wazapp](https://github.com/tgalal/wazapp).  Wazapp is full featured Whatsapp client that is being used by hundreds of thousands of people around the world. Yowsup is born out of the Wazapp project. Before becoming a separate project, it was only the engine powering Wazapp. Now that it matured enough, it was separated into a separate project, allowing anyone to build their own Whatsapp client on top of it. Having such a popular client as Wazapp, built on Yowsup, helped bring the project into a much advanced, stable and mature level, and ensures its continuous development and maintaince.
+Yowsup is a python library that enables you build application which use WhatsApp service. Yowsup has been used to create an unofficial WhatsApp client Nokia N9 through the Wazapp project which was in use by 200K + users as well as another fully featured unofficial client for Blackberry 10
 
-Yowsup also comes with a cross platform command-line frontend called [yowsup-cli](https://github.com/tgalal/yowsup/wiki/yowsup-cli). yowsup-cli allows you to jump into connecting and using Whatsapp service directly from command line.
+## Quickstart
 
-### Get started with:
- * **[Yowsup Features](https://github.com/tgalal/yowsup/wiki/About-and-Features)**
- * **[yowsup-cli](https://github.com/tgalal/yowsup/wiki/yowsup-cli)**
- * **[Yowsup Library Documentation](https://github.com/tgalal/yowsup/wiki/Yowsup-Library-Documentation)**
+ * **[yowsup's architecture](https://github.com/tgalal/yowsup/wiki/Architecture)**
+ * **[Create a sample app](https://github.com/tgalal/yowsup/wiki/Sample-Application)**
+ * **[yowsup-cli](https://github.com/tgalal/yowsup/wiki/yowsup-cli-2.0)**
+ * **[Yowsup development, debugging, maintainance and sanity](https://github.com/tgalal/yowsup/wiki/Yowsup-development,-debugging,-maintainance-and-sanity)**
 
-### Requirements:
- * python 2.6+
- * [python-dateutil](http://labix.org/python-dateutil)
- * **yowsup-cli** requires [argparse](http://code.google.com/p/argparse/) for python < 2.7
+## Installation
 
-## License:
-MIT License:
+ - Requires python2.6+, or python3.0 +
+ - Required python packages: python-dateutil,
+ - Required python packages for end-to-end encryption: protobuf, pycrypto, python-axolotl-curve25519
+ - Required python packages for yowsup-cli: argparse, readline (or pyreadline for windows), pillow (for sending images)
 
-	Copyright (c) <2012> Tarek Galal <tare2.galal@gmail.com>
+Install using setup.py to pull all python dependencies, or using pip:
 
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this
-	software and associated documentation files (the "Software"), to deal in the Software
-	without restriction, including without limitation the rights to use, copy, modify,
-	merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
-	permit persons to whom the Software is furnished to do so, subject to the following
-	conditions:
+```
+pip install yowsup2
+```
 
-	The above copyright notice and this permission notice shall be included in all
-	copies or substantial portions of the Software.
+### Linux
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-	INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR
-	A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-	HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
-	CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
-	OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+You need to have installed python headers (from probably python-dev package) and ncurses-dev, then run
+```
+python setup.py install
+```
+Because of a bug with python-dateutil package you might get permission error for some dateutil file called requires.txt when you use yowsup (see [this bug report](https://bugs.launchpad.net/dateutil/+bug/1243202)) to fix you'll need to chmod 644 that file.
+
+### FreeBSD (*BSD)
+You need to have installed: py27-pip-7.1.2(+), py27-sqlite3-2.7.11_7(+), then run
+```
+pip install yowsup2
+```
+
+### Mac
+```
+python setup.py install
+```
+Administrators privileges might be required, if so then run with 'sudo'
+
+### Windows
+
+ - Install [mingw](http://www.mingw.org/) compiler
+ - Add mingw to your PATH
+ - In PYTHONPATH\Lib\distutils create a file called distutils.cfg and add these lines:
+
+```
+[build]
+compiler=mingw32
+```
+ - Install gcc: ```mingw-get.exe install gcc```
+ - Install [zlib](http://www.zlib.net/)
+ - ```python setup.py install```
+
+If pycrypto fails to install with some "chmod error". You can install it separately using something like
+```easy_install http://www.voidspace.org.uk/downloads/pycrypto26/pycrypto-2.6.win32-py2.7.exe```
+
+or for python3 from:
+
+ > [https://github.com/axper/python3-pycrypto-windows-installer](https://github.com/axper/python3-pycrypto-windows-installer)
+
+and then rerun the install command again
+
+# Special thanks
+
+Special thanks to:
+
+- [CODeRUS](https://github.com/CODeRUS)
+- [mgp25](https://github.com/mgp25)
+- [SikiFn](https://github.com/SikiFn)
+- [0xTryCatch](https://github.com/0xTryCatch)
+- [shirioko](https://github.com/shirioko)
+
+and everyone else on the [WhatsAPI](https://github.com/mgp25/WhatsAPI-Official) project for their contributions to yowsup and the amazing effort they put into WhatsAPI, the PHP WhatsApp library
+
+Special thanks goes to all other people who use and contribute to the library as well.
+
+Please **[read this](https://github.com/tgalal/yowsup/wiki/Yowsup-development,-debugging,-maintainance-and-sanity)** if you'd like to contribute to yowsup 2.0
+
+Thanks!
+
+
+# License:
+
+As of January 1, 2015 yowsup is licensed under the GPLv3+: http://www.gnu.org/licenses/gpl-3.0.html.
